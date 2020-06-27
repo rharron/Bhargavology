@@ -98,7 +98,7 @@ For more examples of usage, see the examples below, as well as the examples in t
 
 ### Dedekind's example
 
-One major advantage of using binary cubic forms is that it allows you to work with non-monogenic cubic rings. In this example, I'll use Dedekind's original example of a non-monogenic ring of integers to illustrate some functionality of this Bhargavology code. Dedekind's example is  **Q**(&alpha;) where &alpha; is a root of *f*(*x*)&nbsp;=&nbsp;*x*<sup>3</sup>&minus;*x*<sup>2</sup>&minus;2*x*&minus;8.
+One major advantage of using binary cubic forms is that it allows you to work with non-monogenic cubic rings. In this example, I'll use Dedekind's original example of a non-monogenic ring of integers to illustrate some functionality of this Bhargavology code. Dedekind's example is **Q**(&alpha;) where &alpha; is a root of *f*(*x*)&nbsp;=&nbsp;*x*<sup>3</sup>&minus;*x*<sup>2</sup>&minus;2*x*&minus;8.
 
 Let's get the order corresponding to *f*(*x*) and see that it's not maximal:
 
@@ -120,7 +120,7 @@ sage: Omax = BCFmax.order()
 sage: Omax.is_maximal()
 True
 ```
-We could have also gotten this "by hand" as follows. Factoring the discriminant of BCF, we can see that the only square dividing it is 2<sup>2</sup>, so if *O* is not maximal, then it has index 2 in the maximal order. Because the last coefficient of BCF is divisible by 2<sup>2</sup> and the second-to-last by 2, finding a form corresponding to a ring containing O with index 2 is straightforward:
+We could have also gotten this "by hand" as follows. Factoring the discriminant of BCF, we can see that the only square dividing it is 2<sup>2</sup>, so if *O* is not maximal, then it has index 2 in the maximal order. Because the last coefficient of BCF is divisible by 2<sup>2</sup> and the second-to-last by 2, finding a form corresponding to a ring containing *O* with index 2 is straightforward:
 
 ```
 sage: BCF.disc().factor()
@@ -129,7 +129,7 @@ sage: BCF.action(Matrix(2, [1,0,0,1/2]))
 2*X^3 - X^2*Y - X*Y^2 - 2*Y^3
 ```
 
-We can see the multiplication table *O* in the normalized basis 1, &omega;, &theta; (see section 2 of Bhargava–Shankar–Tsimerman, where they use the term "normal basis"):
+We can see the multiplication table of *O* in the normalized basis 1, &omega;, &theta; (see section 2 of Bhargava–Shankar–Tsimerman, where they use the term "normal basis"):
 ```
 sage: BCF.multiplication_table()
         | 1       omega               theta
@@ -146,7 +146,7 @@ sage: [BCFmax(i, j) for i in GF(2) for j in GF(2)]
 [0, 0, 0, 0]
 ```
 
-The rest of this example doesn't explicitly use the Bhargavology code, but I wanted to give an idea of what you can do with binary cubic forms. Dedekind's example is one where 2 always divides the index of any monogenic order, but using binary cubic forms, you can still determine the prime factorization of 2 in a manner analogous to Dedekind's theorem for polynomials (see Section 3 of del Corso–Dvornicich–Simon's "Decomposition of primes in non-maximal orders" for the mathematical details). Specifically, factoring BCFmax mod 2 gives polynomials that you should use to generate the prime ideals dividing 2*O*<sub>max</sub>:
+The rest of this example doesn't really use the Bhargavology code, but I wanted to give an idea of what you can do with binary cubic forms. Dedekind's example is one where 2 always divides the index of any monogenic order, but using binary cubic forms, you can still determine the prime factorization of 2 in a manner analogous to Dedekind's theorem for polynomials (see Section 3 of del Corso–Dvornicich–Simon's "Decomposition of primes in non-maximal orders" for the mathematical details). Specifically, factoring BCFmax mod 2 gives polynomials that you should use to generate the prime ideals dividing 2*O*<sub>max</sub>:
 
 ```
 sage: K = O.fraction_field()
