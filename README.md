@@ -1,7 +1,22 @@
 # Bhargavology
-Sage (python) scripts for working with cubic and quartic rings via binary cubic forms and pairs of ternary quadratic forms.
+Sage (python) scripts for working with cubic and quartic rings via binary cubic forms and pairs of ternary quadratic forms in the spirit of Delone–Faddeev, Davenport–Heilbronn, Gan–Gross–Savin, Bhargava, et al.
 
-Note that this code is still in development. I'm releasing it because I think it can still be useful to people out there.
+**Note:** this code is still in development. I'm releasing it because I think it can be useful to people out there despite this fact.
+
+## Initial usage comments
+
+To start using this code in Sage use:
+```
+sage: load('PairOfTernaryQuadraticForms.sage')
+```
+
+This loads the scripts for pairs of ternary quadratic forms, ternary quadratic forms, binary cubic forms, and binary quadratic forms. If you won't be dealing with quartic rings or pairs of ternary quadratic forms, you can simply do:
+
+```
+sage: load('BinaryCubicForm.sage')
+```
+
+This will load the bianary cubic form and binary quadratic form code.
 
 ## Cubic rings and binary cubic forms
 
@@ -10,13 +25,6 @@ In this section, I give some examples of how to use my code. I've tried to inclu
 ### Dedekind's example
 
 One major advantage of using binary cubic forms is that it allows you to work with non-monogenic cubic rings. In this example, I'll use Dedekind's original example of a non-monogenic ring of integers to illustrate some functionality of this Bhargavology code. Dedekind's example is  **Q**(&alpha;) where &alpha; is a root of *f*(*x*)&nbsp;=&nbsp;*x*<sup>3</sup>&minus;*x*<sup>2</sup>&minus;2*x*&minus;8.
-
-To start off, in Sage type:
-```
-load('BinaryCubicForm.sage')
-```
-
-Now, you can use the binary cubic forms code, as well as some binary quadratic forms code it loads.
 
 Let's get the order corresponding to *f*(*x*) and see that it's not maximal:
 
