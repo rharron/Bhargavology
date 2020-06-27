@@ -139,7 +139,14 @@ sage: BCF.multiplication_table()
   theta | theta   8                   8*omega - 2*theta - 8
 ```
 
-Now that we have a binary cubic form corresponding to the maximal order, we can use it to understand some algebraic number theory. The rest of this example doesn't explicitly use the Bhargavology code, but I wanted to give an idea of what you can do with binary cubic forms. Dedekind's example is one where 2 always divides the index of any monogenic order, but using binary cubic forms, you can still determine the prime factorization of 2 in a manner analogous to Dedekind's theorem for polynomials (see Section 3 of del Corso–Dvornicich–Simon's "Decomposition of primes in non-maximal orders" for the mathematical details). Specifically, factoring BCFmax mod 2 gives polynomials that you should use to generate the prime ideals dividing 2*O*<sub>max</sub>:
+Now that we have a binary cubic form corresponding to the maximal order, we can use it to understand some algebraic number theory. The cubic ring corresponding to a binary cubic form is monogenic if and only if the form represents &pm;1. We can thus see that the ring of integers of **Q**(&alpha;) is not monogenic by, say, reducing mod 2 and seeing that BCFmax doesn't represent 1 mod 2:
+
+```
+sage: [BCFmax(i, j) for i in GF(2) for j in GF(2)]
+[0, 0, 0, 0]
+```
+
+The rest of this example doesn't explicitly use the Bhargavology code, but I wanted to give an idea of what you can do with binary cubic forms. Dedekind's example is one where 2 always divides the index of any monogenic order, but using binary cubic forms, you can still determine the prime factorization of 2 in a manner analogous to Dedekind's theorem for polynomials (see Section 3 of del Corso–Dvornicich–Simon's "Decomposition of primes in non-maximal orders" for the mathematical details). Specifically, factoring BCFmax mod 2 gives polynomials that you should use to generate the prime ideals dividing 2*O*<sub>max</sub>:
 
 ```
 sage: K = O.fraction_field()
