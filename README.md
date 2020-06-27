@@ -86,7 +86,7 @@ sage: (omega+theta).characteristic_polynomial()
 x^3 - 2*x^2 + x
 ```
 
-When a binary cubic forms corresponds to an order in a number field (i.e. when the form
+When a binary cubic form corresponds to an order in a number field (i.e. when the form
 is irreducible), we can get the associated order:
 ```
 sage: BCF = BinaryCubicForm([1, -1, -2, -8])
@@ -166,3 +166,71 @@ Fractional ideal (2)
 ```
 
 The last two commands verify that we generated 3 prime ideals whose product is 2*O*<sub>max</sub>.
+
+### Other functions of interest ###
+In this section, I briefly mention the some other functions in the binary cubic forms code. For the full list, see the source code itself.
+
+You can compute the Hessian (the trace zero form is 6 times the Hessian)
+```
+sage: BCF = BinaryCubicForm([0, -1, 1, 0])
+sage: BCF1 = BinaryCubicForm([1, 0, 0, -10])
+sage: R.<a, b, c, d> = PolynomialRing(QQ)
+sage: BCF2 = BinaryCubicForm([a, b, c, d], base_ring=R)
+sage: BCF.hessian()
+X^2 - X*Y + Y^2
+sage: BCF1.hessian()
+90*X*Y
+sage: BCF2.hessian()
+(b^2 - 3*a*c)*X^2 + (b*c - 9*a*d)*X*Y + (c^2 - 3*b*d)*Y^2
+sage: BCF1.trace_zero_form()
+540*x*y
+```
+
+You can also compute the shape (which is a binary quadratic form over
+different rings depending on what binary cubic form you have):
+```
+sage: BCF.shape()
+X^2 - X*Y + Y^2
+sage: BCF1.shape()
+125.3228985075451?*x^2 + 581.697366308609?*y^2
+sage: BCF2.shape(check=False, use_AA=False)
+(-27*a*d*thetainv + (-3*b^2 - 9*a*c)*one - 9*a*b*theta)*x^2 + (-18*b*d*thetainv - 12*b*c*one - 18*a*c*theta)*x*y + (-9*c*d*thetainv + (-3*c^2 - 9*b*d)*one - 27*a*d*theta)*y^2
+```
+
+The FiniteDimensionalAlgebra class has a lot of useful functionality you
+can get at using the algebra method of BinaryCubicForm. Like if you want
+to quickly find out what the general minimal polynomials of &omega; and
+&theta; are:
+```
+sage: one, omega, theta = BCF2.algebra().basis()
+sage: omega.minimal_polynomial()
+x^3 + b*x^2 + a*c*x + a^2*d
+sage: theta.minimal_polynomial()
+x^3 - c*x^2 + b*d*x - a*d^2
+```
+
+You can compute the number of subrings of the associated cubic ring of
+given prime index (for forms over **Z**):
+```
+sage: BCF.number_of_index_p_subrings(2)
+3
+sage: BCF1.number_of_index_p_subrings(2)
+1
+```
+
+And also the number of index *p* overrings:
+```
+BCF.number_of_p_overrings(2)
+0
+BCF1.number_of_p_overrings(3)
+1
+```
+
+You can in fact get a list of primes at which the form is non-maximal
+(or really its associated cubic ring):
+```
+sage: BCF.non_maximal_primes()
+[]
+sage: BCF1.non_maximal_primes()
+[3]
+```
