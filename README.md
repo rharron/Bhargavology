@@ -12,6 +12,10 @@ Sage (python) scripts for working with cubic and quartic rings via binary cubic 
   * [Dedekind's example](#dedekinds-example)
   * [Other functions of interest](#other-functions-of-interest)
 
+* [Quartic rings and pairs of ternary quadratic forms](#quartic-rings-and-pairs-of-ternary-quadratic-forms)
+
+  * [Some basic functionality](#some-basic-functionality-1)
+
 ## Basic usage comments
 
 To start using this code in Sage use:
@@ -248,7 +252,7 @@ sage: BCF1.non_maximal_primes()
 
 In this section, I'll give some examples of using the Bhargavology code to study quartic rings. Again, I've tried to include some interesting examples. The mathematical details for the relation between quartic rings and pairs of ternary quadratic forms are mostly to be found in Manjul Bhargava's article [Higher composition laws III: The parametrization of quartic rings](https://doi.org/10.4007/annals.2004.159.1329).
 
-### Some basic functionality
+### Some basic functionality 
 
 One way to create a pair of ternary quadratic forms is to pass it a list of coefficients. This list has the coefficients of one ternary quadratic form and then the other.
 ```
@@ -345,3 +349,51 @@ sage: PTQF2.action([g3, g2]).print_pair()
 ```
 
 There are more functions available. Please see the source code if you're interested!
+
+### An *S*<sub>4</sub>-quartic with non-monogenic cubic resolvent ring
+
+A cool result of Melanie Matchett Wood ([Quartic Rings Associated to Binary Quartic Forms](https://doi.org/10.1093/imrn/rnr070)) characterizes those quartic rings that can be parameterized by binary quartic forms as being those whose cubic resolvent ring is monogenic. For the remaining quartic rings, pairs of ternary quadratic forms are necessary. Note also that a quartic integral can't be monogenic if its cubic resolvent ring isn't: taking the classical cubic resolvent polynomial of the minimal polynomial of a generator of the quartic would give a generator of its cubic resolvent ring. Anyway(!), here's the example:
+
+```
+sage: PTQF = PairOfTernaryQuadraticForms([0, 2, -2, -2, 1, 2, -1, 1, -1, -1, 1, 1])
+sage: PTQF.disc().factor()
+-1 * 47 * 73
+sage: BCF = PTQF.cubic_invariant(); BCF
+-4*X^3 - 9*X^2*Y + 13*X*Y^2 - 4*Y^3
+sage: [BCF(i, j) for i in GF(2) for j in GF(2)]
+[0, 0, 0, 0]
+```
+Since the discriminant of PTQF is squarefree, we know it corresponds to a maximal order. And since BCF doesn't represent 1 mod 2, we know it corresponds to a non-monogenic ring!
+
+## A *D*<sub>4</sub>-quartic
+
+The quartic orders in fields that are not *S*<sub>4</sub> nor *A*<sub>4</sub> are characterized by having a cubic resolvent ring that is not a domain. Here is an example of a *D*<sub>4</sub>-quartic ring of integers and its cubic resolvent ring.
+
+```
+sage: x = polygen(ZZ)
+sage: f = x^4 - 2
+sage: PTQF = _naive_pair_from_poly(f)
+sage: PTQF.print_pair()
+[  0   0   0| -1   0   0]
+[  0   1   0|  0   0 1/2]
+[  0   0  -2|  0 1/2   0]
+sage: PTQF.disc().factor()
+-1 * 2^11
+sage: K.<a> = NumberField(f)
+sage: K.disc().factor()
+-1 * 2^11
+```
+Since the two discriminants agree, we know that PTQF corresponds to the maximal order in K. Now, we can get the cubic resolvent ring and use its multiplication table to determine what it is!
+
+```
+sage: BCF = PTQF.cubic_invariant(); BCF
+-8*X^2*Y - Y^3
+sage: BCF.multiplication_table()
+        | 1       omega     theta
++-------+-------+---------+-----------+
+  1     | 1       omega     theta
+  omega | omega   8*omega   0
+  theta | theta   0         omega - 8
+```
+
+This is exactly the multiplication table for the subring of **Z**&times;**Z**[&radic;-2] whose **Z**-basis is 1, &omega;=(8, 0), &theta;=(0, 2&radic;-2). Since &omega; = 8 - &theta;<sup>2</sup>, the cubic resolvent ring is, in fact, the monogenic ring **Z**[&theta;].
