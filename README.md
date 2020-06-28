@@ -298,12 +298,21 @@ sage: PTQF2.disc()
 a1^2*a2^2*a3^2 - 4*a0*a2^3*a3^2 - 4*a1^3*a3^3 + 18*a0*a1*a2*a3^3 - 27*a0^2*a3^4 - 4*a1^2*a2^3 + 16*a0*a2^4 + 18*a1^3*a2*a3 - 80*a0*a1*a2^2*a3 - 6*a0*a1^2*a3^2 + 144*a0^2*a2*a3^2 - 27*a1^4 + 144*a0*a1^2*a2 - 128*a0^2*a2^2 - 192*a0^2*a1*a3 + 256*a0^3
 ```
 
-We can also display a pair of ternary quadratic forms as the pair of corresponding Gram matrices:
+We can also display a pair of ternary quadratic forms as the pair of corresponding Gram matrices, or we can get the matrices separately:
 ```
 sage: PTQF2.print_pair()
 [     0 1/2*a3 1/2*a1|    -1      0      0]
 [1/2*a3      1 1/2*a2|     0      0    1/2]
 [1/2*a1 1/2*a2     a0|     0    1/2      0]
+sage: A, B = PTQF2.matrix_pair()
+sage: A
+[     0 1/2*a3 1/2*a1]
+[1/2*a3      1 1/2*a2]
+[1/2*a1 1/2*a2     a0]
+sage: B
+[ -1   0   0]
+[  0   0 1/2]
+[  0 1/2   0]
 ```
 (Using PTQF2.show() prints the pair out all pretty!)
 
