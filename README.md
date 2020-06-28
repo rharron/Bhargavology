@@ -3,6 +3,15 @@ Sage (python) scripts for working with cubic and quartic rings via binary cubic 
 
 **Note:** this code is still in development. I'm releasing it because I think it can be useful to people out there despite this fact.
 
+### Table of contents
+
+* [Basic usage comments](#basic-usage-comments)
+* [Cubic rings and binary cubic forms](#cubic-rings-and-binary-cubic-forms)
+  
+  * [Some basic functionality](#some-basic-functionality)
+  * [Dedekind's example](#dedekinds-example)
+  * [Other functions of interest](#other-functions-of-interest)
+
 ## Basic usage comments
 
 To start using this code in Sage use:
