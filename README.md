@@ -15,6 +15,8 @@ Sage (python) scripts for working with cubic and quartic rings via binary cubic 
 * [Quartic rings and pairs of ternary quadratic forms](#quartic-rings-and-pairs-of-ternary-quadratic-forms)
 
   * [Some basic functionality](#some-basic-functionality-1)
+  * [An *S*<sub>4</sub>-quartic with non-monogenic cubic resolvent ring](#an-s4-quartic-with-non-monogenic-cubic-resolvent-ring)
+  * [A *D*<sub>4</sub>-quartic](#a-d4-quartic)
 
 ## Basic usage comments
 
