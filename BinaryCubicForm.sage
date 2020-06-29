@@ -12,7 +12,11 @@ from sage.categories.magmatic_algebras import MagmaticAlgebras
 
 class BinaryCubicForm(SageObject):
     r"""
-    A class representing a binary cubic form over a ring R.
+    A class representing a binary cubic form over a ring R, especially
+    as it relates to a corresponding cubic ring over R. For more on the
+    mathematical relation between binary cubic forms and cubic rings, see
+    Sections 2 & 3 of Bhargava–Shankar–Tsimerman's
+    'On the Davenport–Heilbronn theorems and second order terms'.
 
     EXAMPLES::
 
